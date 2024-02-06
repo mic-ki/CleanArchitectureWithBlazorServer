@@ -22,12 +22,17 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: false
 
+      - name: Display environment variables
+        run: |
+          echo "DOTNET_ROOT: $DOTNET_ROOT"
+          echo "Configuration: $CONFIGURATION"
+
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --project ${{env.DOTNET_ROOT}}/src/Server.UI/Server.UI.proj
 
       - name: dotnet publish
-        #run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/src/Server.UI/Server.UI.proj
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        #run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/src/Server.UI/Server.UI.proj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
