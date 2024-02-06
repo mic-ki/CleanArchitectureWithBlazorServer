@@ -33,7 +33,7 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release 
-        working-directory: $REPOSITORY_VAR\src\Server.UI
+        working-directory: ${{env.REPOSITORY_VAR}}\src\Server.UI
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
