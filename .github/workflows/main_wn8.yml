@@ -23,13 +23,8 @@ jobs:
           include-prerelease: false
 
       - name: Display environment variables
-        run: |
-          echo "DOTNET_ROOT: $DOTNET_ROOT"
-          echo "Configuration: $CONFIGURATION"
-          echo "repository variable : $REPOSITORY_VAR"
-          echo "organization variable : $ORGANIZATION_VAR"
-          echo "overridden variable : $OVERRIDE_VAR"
-          echo "variable from shell environment : $env_var"
+        run: echo $"repository variable {{env.REPOSITORY_VAR}}"
+
 
       - name: Build with dotnet
         run: dotnet build --configuration Release 
