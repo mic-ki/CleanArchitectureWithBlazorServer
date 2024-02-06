@@ -28,7 +28,8 @@ jobs:
           echo "Configuration: $CONFIGURATION"
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release /src/Server.UI/Server.UI.proj
+        run: dotnet build --configuration Release 
+        working-directory: /src/Server.UI/
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
