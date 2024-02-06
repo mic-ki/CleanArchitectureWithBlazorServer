@@ -26,10 +26,14 @@ jobs:
         run: |
           echo "DOTNET_ROOT: $DOTNET_ROOT"
           echo "Configuration: $CONFIGURATION"
+          echo "repository variable : $REPOSITORY_VAR"
+          echo "organization variable : $ORGANIZATION_VAR"
+          echo "overridden variable : $OVERRIDE_VAR"
+          echo "variable from shell environment : $env_var"
 
       - name: Build with dotnet
         run: dotnet build --configuration Release 
-        working-directory: $HOMEPATH\VirtualBox\src\Server.UI
+        working-directory: $REPOSITORY_VAR\src\Server.UI
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
